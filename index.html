@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nourish</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap");
+    /* Base */
+    :root {
+      --clr-primary: #fe5722;
+      --clr-secondary: #272d36;
+    }
+
+    *,
+    *::after,
+    *::before {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-family: "Josefin Sans", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #fff;
+      color: var(--clr-secondary);
+      overflow-x: hidden;
+    }
+
+    .section {
+      width: 100%;
+      padding: 40px 0;
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      padding: 0 30px;
+    }
+
+    .primary {
+      font-size: 64px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .secondary {
+      font-size: 44px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .tertiary {
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 14px 20px;
+      background: var(--clr-primary);
+      border-radius: 4px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 22px;
+      display: inline-block;
+      margin: 20px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* End Base */
+
+    /* Menu */
+    nav {
+      height: 80px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      background: #fff5f2;
+      box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.22);
+      z-index: 22;
+    }
+
+    label.logo {
+      font-size: 35px;
+      line-height: 80px;
+      padding: 0 30px;
+      font-weight: 700;
+    }
+
+    nav ul {
+      float: right;
+      margin-right: 20px;
+    }
+
+    nav ul li {
+      display: inline-block;
+      line-height: 80px;
+      margin: 0 5px;
+    }
+
+    nav ul li a {
+      font-size: 18px;
+      padding: 7px 13px;
+      text-decoration: none;
+      color: var(--clr-secondary);
+      transition: all 0.3s ease;
+    }
+
+    .menu a.active,
+    .menu a:hover {
+      border-bottom: 2px solid var(--clr-primary);
+    }
+
+    .checkbtn {
+      font-size: 30px;
+      color: #fff;
+      float:right;
+      line-height: 80px;
+      margin-right: 40px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #check {
+      display: none;
+    }
+
+    /* End Menu */
+
+    /* Hero Section */
+    #hero-section {
+      background: #fff5f2;
+      margin-top: 60px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .text,
+    .visual {
+      width: 50%;
+    }
+
+    .text {
+      margin: 0 20px;
+    }
+
+    .visual img {
+      width: 80%;
+      height: auto;
+      display: block;
+    }
+
+    #hero-section .text {
+      margin-left: 30px;
+    }
+
+    #hero-section .visual img {
+      margin-left: auto;
+    }
+    /* End Hero Section */
+
+    /* How It Works */
+    #how-it-works {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .box {
+      border: 1px solid #b2b2b2;
+      padding: 25px 5px;
+      margin: 0 10px;
+      border-radius: 8px;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .box ion-icon {
+      font-size: 35px;
+      color: var(--clr-primary);
+      margin: 15px 0;
+      transition: all 0.3s ease;
+    }
+
+    .box.active,
+    .box:hover {
+      color: #fff;
+      border-color: var(--clr-primary);
+      background: var(--clr-primary);
+    }
+
+    .box.active ion-icon,
+    .box:hover ion-icon {
+      color: #fff;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+    }
+
+    .box.active {
+      transform: translateY(-10px);
+    }
+    /* End How It Works */
+
+    /* About */
+    #about .visual img,
+    #app .visual img {
+      margin-right: auto;
+    }
+    /* End About */
+
+    /* Restaurant Menu */
+    .category {
+      list-style: none;
+      text-align: center;
+      margin: 20px 0 40px 0;
+    }
+
+    .category li {
+      display: inline-block;
+      margin: 0 15px;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .category li.active {
+      color: var(--clr-primary);
+    }
+
+    .restaurant-menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .menu-item {
+      width: 260px;
+      margin: 0 auto;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .menu-item img {
+      width: 100%;
+    }
+
+    .order {
+      justify-content: space-between;
+    }
+
+    .btn-menu {
+      padding: 6px 10px;
+      font-size: 16px;
+      text-align: center;
+      background: #fff;
+      border: 1px solid var(--clr-primary);
+      color: var(--clr-primary);
+      transition: all 0.3s ease;
+    }
+
+    .title {
+      font-size:18px;
+      font-weight: 300;
+      margin: 8px 0;
+    }
+
+    .location {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-menu:hover {
+      background: var(--clr-primary);
+      color: #fff;
+    }
+    /* End Restaurant Menu */
+
+    /* Testimonial */
+    #testimonial .visual img {
+      margin-left: auto;
+    }
+
+    .user {
+      margin-top: 30px;
+      justify-content: start;
+    }
+
+    .user img {
+      width: 50px;
+      border-radius: 50%;
+      margin-right: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .user:hover img {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    /* End Testimonial */
+
+    /* FAQ */
+    #faq .secondary {
+      text-align: center;
+    }
+
+    .faq {
+      width: 60%;
+      margin: 50px auto 20px auto;
+    }
+
+    summary {
+      padding: 1em;
+      border: 1px solid #b2b2b2;
+      margin-bottom: 1em;
+      cursor: pointer;
+      outline: none;
+      border-radius: 0.3em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    details[open] summary {
+      border-bottom: 1px solid #b2b2b2;
+      margin-bottom: 0.5em;
+    }
+
+    details[open] summary ~ * {
+      animation: open 1s ease-in-out;
+    }
+
+    @keyframes open {
+      from {
+        opacity: 1;
+        margin-top: -10px;
+      }
+
+      top {
+        opacity: 1;
+        margin-top: 0;
+      }
+    }
+
+    .content {
+      padding: 0.5em;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    /* End FAQ */
+
+    /* App */
+    #app {
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .app-store {
+      background: #000;
+      margin: 0 10px;
+      padding: 4px 16px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .app-store p {
+      margin-top: 8px;
+    }
+
+    .app-store span {
+      font-size: 16px;
+      line-height: 25px;
+    }
+
+    .app-store ion-icon {
+      font-size: 30px;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .app-store:hover {
+      background: #333;
+    }
+
+    .app-store:hover ion-icon {
+      transform: translateY(-3px);
+    }
+
+    .download {
+      margin: 30px 0;
+    }
+    /* End App */
+
+   /* Footer */
+    .footer {
+      background: var(--clr-secondary);
+      color: #b2b2b2;
+      padding: 30px 0;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .footer .container {
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .footer h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .footer ul {
+      list-style: none;
+      line-height: 30px;
+      font-size: 16px;
+    }
+
+    .footer ul li {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .footer-about {
+      width: 35%;
+    }
+
+    .copyright {
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 30px;
+      border-top: 1px solid #b2b2b2;
+    }
+    /* End Footer */
+
+    /* Responsive  */
+    @media (max-width: 952px) {
+      label.logo {
+        font-size: 30px;
+        padding-left: 20px;
+      }
+
+      nav ul li a {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 858px) {
+      .checkbtn {
+        display: block;
+        color: var(--clr-primary);
+      }
+
+      ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 80px;
+        left: -100%;
+        top: 80px;
+        transition: all 0.5s;
+        text-align: center;
+        background: #fff5f2;
+      }
+
+      nav ul li {
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+      }
+
+      nav ul li a {
+        font-size: 20px;
+      }
+
+      .menu a:hover,
+      .menu a.active {
+        background: none;
+        color: var(--clr-primary);
+      }
+
+      #check:checked ~ ul {
+        left: 0;
+      }
+
+      #hero-section {
+        margin-top: 80px;
+      }
+
+      #hero-section .text {
+        margin-left: auto;
+      }
+
+      .flex {
+        flex-direction: column;
+      }
+
+      .visual,
+      .text {
+        width: 70%;
+        margin: 15px auto;
+        text-align: center;
+      }
+
+      .download,
+      .user {
+        flex-direction: row;
+      }
+
+      .user {
+        justify-content: center;
+      }
+
+      .visual img {
+        margin: 0 auto;
+      }
+
+      .box {
+        margin: 15px 0;
+      }
+
+      .restaurant-menu {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+      }
+
+      .faq,
+      .menu-item {
+        width: 80%;
+      }
+
+      .primary {
+        font-size: 56px;
+      }
+
+      .secondary {
+        font-size: 40px;
+      }
+
+      .tertiary {
+        font-size: 20px;
+      }
+
+      .footer-about {
+        width: 100%;
+        text-align: center;
+      }
+
+      .quick-links,
+      .get-in-touch,
+      .footer-category {
+        display: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding: 0 10px;
+     }
+
+      .text,
+      .visual {
+        width: 90%;
+      }
+
+      .restaurant-menu {
+        grid-template-columns: 1fr;
+      }
+
+      .faq {
+        width: 90%;
+      }
+
+      .app-store {
+        margin: 10px 0;
+      }
+
+      .download {
+        flex-direction: column;
+      }
+
+      .primary {
+        font-size: 48px;
+      }
+
+      .secondary {
+        font-size: 32px;
+      }
+
+      .tertiary {
+        font-size: 17px;
+      }
+    }
+    /* End Responsive  */
+
+    .youtube {
+      position: fixed;
+      bottom: 40px;
+      right: 70px;
+      text-decoration: none;
+      padding: 8px 12px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 6px;
+      box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+
+    .youtube p {
+      font-size: 22px;
+    }
+  </style>
+  <body>
+    <!-- Menu -->
+    <div class="menu">
+      <nav>
+        <input type="checkbox" id="check" />
+        <label for="check" class="checkbtn">
+          <ion-icon name="grid-outline"></ion-icon>
+        </label>
+
+        <label class="logo">Nourish</label>
+
+        <ul>
+          <li><a href="#hero-section" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#testimonial">Reviews</a></li>
+          <li><a href="#app">Register Now</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- End Menu -->
+
+    <!-- Hero Section -->
+    <div class="section flex" id="hero-section">
+      <div class="text">
+        <h1 class="primary">
+          Together, We Nourish Hope. <br /> </span>
+        </h1>
+
+        <p class="tertiary">
+         Nourish is a platform connecting surplus food to those in need. Through our online hub, donors share excess inventory, volunteers offer support, and individuals facing food insecurity access nutritious donations. Together, we fight waste and hunger, nourishing communities.
+        </p>
+
+        <a href="#menu" class="btn">Explore Menu</a>
+      </div>
+      <div class="visual">
+        <img src="https://media.istockphoto.com/id/1181962948/photo/volunteers-scooping-the-food-to-share-with-the-needy-concept-of-providing-free-food-to.jpg?s=612x612&w=0&k=20&c=pWU0efeNYR58cEKMA7FlhGTUZY_NFytbJJ9XOxZe0HA=" alt="" />
+      </div>
+    </div>
+    <!-- End Hero Section -->
+
+    <!-- How It Works -->
+    <div class="section" id="how-it-works">
+      <h2 class="secondary">How It Works</h2>
+
+      <div class="container flex">
+        <div class="box">
+          <h3>Donors</h3>
+          <ion-icon name="timer-outline"></ion-icon>
+          <p>
+            Share surplus food from restaurants, cafes, or stores. Upload details and photos of excess inventory to our platform.
+          </p>
+        </div>
+
+        <div class="box active">
+          <h3>Volunteers</h3>
+          <ion-icon name="trophy-outline"></ion-icon>
+          <p>
+Offer your time and support to help with food distribution, transportation, or collection. Sign up, explore opportunities, and confirm assignments.
+          </p>
+        </div>
+
+        <div class="box">
+          <h3>Recipients</h3>
+          <ion-icon name="checkmark-done-circle-outline"></ion-icon>
+          <p>
+           If you're facing food insecurity, register and browse available donations. Select items that meet your needs and confirm your order for delivery.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- End How It Works -->
+
+    <!-- About -->
+    <div class="section" id="about">
+      <div class="container flex">
+        <div class="visual">
+          <img src="https://media.istockphoto.com/id/1492759962/photo/concept-of-giving-free-food-to-the-poor-in-the-community-volunteers-handing-out-food-to.jpg?s=612x612&w=0&k=20&c=qYX37R38Ynj4fiQLAZImX0XgTCJCI-Tsy2-Qzi2FQ5g=" alt="" />
+        </div>
+        <div class="text">
+          <div class="secondary"></div>
+          <h2 class="primary">Where Every Meal is a Message of Care.</h2>
+
+          <h3 class="tertiary">Dear Volunteers</h3>
+
+          <p>
+            Thank you, for being the backbone of Nourish. Your time and effort make a world of difference in combating food insecurity.
+          </p>
+
+          <a href="#menu" class="btn">Explore Nourish Cities</a>
+        </div>
+      </div>
+    </div>
+    <!-- End About -->
+
+    <!-- Restaurant Menu -->
+    <div class="section" id="menu">
+      <div class="container">
+       
+
+        <div class="container">
+          <div class="restaurant-menu">
+            <div class="menu-item">
+              <img src="https://www.andbeyond.com/wp-content/uploads/sites/5/colombo-sri-lanka.jpg" alt="" />
+
+              
+
+              <div class="location">Colombo</div>
+
+              <div class="order flex">
+                
+                <a href="#" class="btn btn-menu">Check-in</a>
+              </div>
+            </div>
+
+            <div class="menu-item">
+              <img src="https://www.srilankainstyle.com/storage/app/media/uploaded-files/7-reasons-to-visit-kandy-in-sri-lanka-slider-1.jpg" alt="" />
+
+             
+
+              <div class="location">Kandy</div>
+
+              <div class="order flex">
+                
+                <a href="#" class="btn btn-menu">Check-in</a>
+              </div>
+            </div>
+
+            <div class="menu-item">
+              <img src="https://www.storiesbysoumya.com/wp-content/uploads/2021/12/jaffna-sril-lanka-travel.jpg" alt="" />
+
+            
+
+              <div class="location">Jaffna</div>
+
+              <div class="order flex">
+                
+                <a href="#" class="btn btn-menu">Check-in</a>
+              </div>
+            </div>
+
+            <div class="menu-item">
+              <img src="https://explore.vacations/wp-content/uploads/2020/09/Kurunegala.jpg" alt="" />
+
+            
+
+              <div class="location">Kurunegala</div>
+
+              <div class="order flex">
+                
+                <a href="#" class="btn btn-menu">Check-in</a>
+              </div>
+            </div>
+
+            <div class="menu-item">
+              <img src="https://media.istockphoto.com/id/579253918/photo/female-worker-in-tea-plantations-of-sri-lanka.jpg?s=612x612&w=0&k=20&c=TH20917YspP0nXSvdP78hl7wA4UD9h6cV6SrxCcyBcE=" alt="" />
+
+              
+
+              <div class="location">Nuwara Eliya</div>
+
+              <div class="order flex">
+               
+                <a href="#" class="btn btn-menu">Check-in</a>
+              </div>
+            </div>
+
+            <div class="menu-item">
+              <img src="https://www.talesofceylon.com/wp-content/uploads/2020/04/Anuradhapura-Tale-800x520-1.jpg" alt="" />
+
+          
+
+              <div class="location">Anuradhapura</div>
+
+              <div class="order flex">
+                
+                <a href="#" class="btn btn-menu">Check-in</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Restaurant Menu -->
+
+    <!-- Testimonial -->
+    <div class="section" id="testimonial">
+      <div class="container flex">
+        <div class="text">
+          <h2 class="secondary">A message to all the social workers</h2>
+          <p>
+            Join Nourish to make a difference! Register now to access nutritious food donations tailored to your needs and help us build a community where no one goes hungry.
+          </p>
+
+          
+      </div>
+    </div>
+    <!-- End Testimonial -->
+
+    <!-- FAQ -->
+    <div class="section" id="faq">
+      <h2 class="secondary">Frequently Asked Questions</h2>
+
+      <div class="faq">
+        <details>
+          <summary>1: How does Nourish work?</summary>
+          <div class="content">
+            <p>
+              Nourish connects surplus food donors with individuals and families facing food insecurity. Donors upload details of their excess inventory, volunteers offer their time for distribution, and recipients register to access available food donations.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>2: Who can donate food on Nourish?</summary>
+          <div class="content">
+            <p>
+              Anyone can donate food on Nourish, including restaurants, cafes, supermarkets, and food manufacturers. If you have surplus food that you'd like to share, simply upload the details to our platform.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>3: How can I volunteer with Nourish?</summary>
+          <div class="content">
+            <p>
+              Volunteering with Nourish is easy! Simply sign up on our platform, explore available opportunities such as food distribution and transportation, and confirm your assignments. Your time and support are invaluable in helping us combat food insecurity.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>4: Who can receive food donations from Nourish?</summary>
+          <div class="content">
+            <p>
+              Individuals and families facing food insecurity can receive food donations from Nourish. If you or someone you know is in need, register on our platform to access available donations tailored to your needs and preferences.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+    <!-- End FAQ -->
+
+    <!-- App -->
+    <div class="section" id="app">
+      <div class="container flex">
+        <div class="visual">
+          <img src="https://t4.ftcdn.net/jpg/03/28/98/23/360_F_328982354_uIWolZGaar5u9AFYrenEqr0c2QOYJ5s4.jpg" alt="" />
+        </div>
+
+        <div class="text">
+          <h2 class="secondary">Join us Now!</h2>
+          <p>
+           Join us in nourishing communities and making a difference today.
+          </p>
+
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End App -->
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container flex">
+        <div class="footer-about">
+          <h2>About</h2>
+          <p>
+           At Nourish, we're on a mission to combat food insecurity and reduce food waste by connecting surplus food donors with individuals and families in need. Founded on the belief that everyone deserves access to nutritious food, our platform serves as a catalyst for positive change in communities. With the support of volunteers and the dedication of our team, we're working towards a future where hunger is eradicated and every plate is filled with nourishment. Learn more about our journey and how you can join us in making a difference
+          </p>
+        </div>
+<div class="footer-category">
+         
+      <div class="copyright" align = "Center">
+        <p><center>Copyright &copy; 2024. All Rights Reserved.</center></p>
+      </div>
+    </div>
+    
+          
+
+    <!-- Ion Icons Js -->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+  </body>
+</html>
